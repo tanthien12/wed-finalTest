@@ -1,0 +1,222 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.4.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <script>
+        // $(document).ready(function(){
+        //     $("#btndk").click(function(e){
+        //         let msv = $("#txt_msv").val();
+        //         let name = $("#txt_name").val();
+        //         let phone = $("#txt_phone").val();
+        //         let email = $("#txt_email").val();
+        //     });
+
+        //     if(ktraten()){
+        //         let trnew = "<tr><td>" + msv + "</td><td>" + name + "</td><td>" + phone + "</td><td>" + email + "</td></tr>";
+        //         $("#myTable").append(trnew);
+        //     }
+        //     function ktraten(){
+        //     let ten = $("#name").val();
+        //         let patten = /^([A-Z]{1}[a-z]*\s)+([A-Z]{1}[a-z]*){1}$/;
+        //         if (patten.test(ten)) //dung
+        //         {
+        //             $("#erten").html("*");
+        //             $('#name').removeClass('errorborder');
+
+        //             return true;
+        //         } else {
+        //             $("#erten").html("Ten sai!!!!");
+        //             $("#erten").addClass("error");
+        //             $("#name").addClass('errorborder');
+        //             return false;
+        //         }
+        //     }
+        //     $("#name").blur(function(e){
+        //     ktraten();
+        //     });
+        // });
+
+        
+        // số tín chỉ
+        function checkstc(){
+            const monhoc = document.querySelector("#monhoc");
+            const stc = document.querySelector("#stc");
+
+            monhoc.addEventListener("change", function() {
+            stc.value = monhoc.value;
+            });
+
+        }
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     const monhoc = document.querySelector("#monhoc");
+        //     const stc = document.querySelector("#stc");
+
+        //     monhoc.addEventListener("change", function() {
+        //     stc.value = monhoc.value;
+        //     });
+        // });
+        //--
+
+        function submitForm(event) {
+            event.preventDefault();
+            var msv = document.getElementById("txt_msv").value;
+            var name = document.getElementById("txt_name").value;
+            var phone = document.getElementById("txt_phone").value;
+            var email = document.getElementById("txt_email").value;
+            var giotinh = document.querySelector("input[name='gioi_tinh']:checked").value;
+            var cachthuc = [];
+            var checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
+            checkedInputs.forEach(input => {
+            cachthuc.push(input.value);
+            });
+            var table = document.getElementById("myTable");
+
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+
+            cell1.innerHTML = msv;
+            cell2.innerHTML = name;
+            cell3.innerHTML = phone;
+            cell4.innerHTML= email;
+            cell5.innerHTML= giotinh;
+            cell6.innerHTML= cachthuc.join(", ");
+
+
+
+        }
+        
+    </script>
+ </head>
+ <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 bg-info">
+                Header
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 bg-danger">
+                <div class="navbar">
+                    <ul class="nav">
+                        <li class="nav-item p-0">
+                            <a href="" class="nav-link">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link" data-toggle="modal" data-target="#myModal">Đăng ký</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 p-0">
+                <table class="table table-bordered" id="myTable">
+                    <tr>
+                        <th>MSV</th>
+                        <th>Họ tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Giới tính</th>
+                        <th>Học</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>ĐĂNG KÝ THÔNG TIN</h4>
+                        <button type="button" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="form-group">
+                                <label for="" class="h6">Mã sinh viên</label>
+                                <input type="text" name="txt_msv" id="txt_msv" class="form-control" placeholder="Mã sinh viên">
+                                <label for="" id="error_msv" class="text-danger">*</label>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="" class="h6">Họ tên</label>
+                                <input type="text" name="txt_name" id="txt_name" class="form-control" placeholder="Nhập họ tên">
+                                <label for="" id="error_name" class="text-danger">*</label>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="" class="h6">Số điện thoại</label>
+                                <input type="text" name="txt_phone" id="txt_phone" class="form-control" placeholder="Nhập Số điện thoại">
+                                <label for="" id="error_phone" class="text-danger">*</label>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="" class="h6">Email</label>
+                                <input type="email" name="txt_email" id="txt_email" class="form-control" placeholder="Nhập Email">
+                                <label for="" id="error_email" class="text-danger">*</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="" class="h6">Giới tính</label> <br>
+                                <input type="radio" name="gioi_tinh" id="gioi_tinh" value="Nam"> Nam
+                                <input type="radio" name="gioi_tinh" id="gioi_tinh" value="Nữ"> Nữ
+                                <label for="" id="error_email" class="text-danger">*</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="" class="h6">Học:</label> <br>
+                                <input type="checkbox" name="cachthuc" id="cachthuc" value="Online"> Online
+                                <input type="checkbox" name="cachthuc" id="cachthuc" value="Offline"> Offline
+                                <input type="checkbox" name="cachthuc" id="cachthuc" value="Tại nhà"> Tại nhà
+                                <label for="" id="error_email" class="text-danger">*</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="">Môn học</label>
+                                <select name="monhoc" id="monhoc" class="form-control" onclick="checkstc()">
+                                    <option value="3">Lập trình hướng đối tượng</option>
+                                    <option value="4">Lập trình phân tán</option>
+                                    <option value="2">Lập trình web</option>
+                                    <option value="3">Lập trình Mobile</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Số tín chỉ</label>
+                                <input type="text" name="" class="form-control" readonly id="stc">
+                            </div>
+
+                            <input type="submit" value="Lưu" onclick="submitForm(event)" class="btn btn-info btn-block" id="btndk">
+                        </form>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal">close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 badge-info text-right p-2">
+                <p class="m-0">21119761-Nguyễn Tấn Thiên</p>
+            </div>
+        </div>
+    </div>
+ </body>
+ </html>

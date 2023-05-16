@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.4.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12">
+                <table id="mytable"class="table table-bordered">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Completed</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        // const url ='https://jsonplaceholder.typicode.com/todos/';
+        const url = 'https://my.api.mockaroo.com/test_1.json?key=8d19c9a0';
+
+        var table = document.getElementById('mytable');
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(todo => {
+                   var row = table.insertRow(-1);
+                   var cell1= row.insertCell(0);
+                   var cell2= row.insertCell(1);
+                   var cell3= row.insertCell(2);
+                    cell1.innerHTML = todo.id;
+                    cell2.innerHTML = todo.images;
+                    cell3.innerHTML = todo.first_name;
+                });
+            })
+        
+        
+    </script>
+</body>
+</html>

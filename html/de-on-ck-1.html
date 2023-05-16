@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.4.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <script>
+        function checkName(){
+            var name = document.getElementById("txt_name").value;
+            var check_error_name = document.getElementById("error_name");
+            var rexge_name = /^([A-Z][A-Za-z]+[\s]*){2,}/gm;
+
+            if(name == "" || name == null){
+                check_error_name.innerHTML = "Không được bỏ trống";
+            }else if(!rexge_name.test(name)){
+                check_error_name.innerHTML = "Không hợp lệ";
+            }else{
+                check_error_name.innerHTML = "";
+                return name;
+            }
+        }
+        function checkPhone(){
+            var phone = document.getElementById("txt_phone").value;
+            var check_error_phone = document.getElementById("error_phone");
+            var rexge_phone = /^\d{3}-\d{4}-\d{4}$/;
+            // var rexge_phone = /^[0-9]{10}/;
+
+            if(phone == "" || phone == null){
+                check_error_phone.innerHTML = "Không được bỏ trống";
+            }else if(!rexge_phone.test(phone)){
+                check_error_phone.innerHTML = "Không hợp lệ";
+            }else{
+                check_error_phone.innerHTML = "";
+                return phone;
+            }
+        }
+        function checkEmail(){
+            var email = document.getElementById("txt_email").value;
+            var check_error_email = document.getElementById("error_email");
+            var rexge_email = /^[a-zA-Z0-9._-]+@[a-zA-Z.-]+\.com$/;
+
+            if(email == "" || email == null){
+                check_error_email.innerHTML = "Không được bỏ trống";
+            }else if(!rexge_email.test(email)){
+                check_error_email.innerHTML = "Không hợp lệ";
+            }else{
+                check_error_email.innerHTML = "";
+                return email;
+            }
+        }
+        function checkDress(){
+            var dress = document.getElementById("txt_dress").value;
+            var check_error_dress = document.getElementById("error_dress");
+
+            if(dress == "" || dress == null){
+                check_error_dress.innerHTML = "Không được bỏ trống";
+            }else{
+                check_error_dress.innerHTML = "";
+                return dress;
+            }
+        }
+        function checkYear(){
+            var year = document.getElementById("txt_year").value;
+            var check_error_year = document.getElementById("error_year");
+            var date = new Date();
+            var inyear = date.getFullYear();
+
+            if(year == "" || year == null){
+                check_error_year.innerHTML = "Không được bỏ trống";
+            }else if(year <= inyear){
+                check_error_year.innerHTML = "Không hợp lệ";
+            }else{
+                check_error_year.innerHTML = "";
+                return year;
+            }
+        }
+
+        var i=0;
+        function outputTable(){
+            var name = document.getElementById("txt_name").value;
+            var phone = document.getElementById("txt_phone").value;
+            var email = document.getElementById("txt_email").value;
+            var dress = document.getElementById("txt_dress").value;
+            var year = document.getElementById("txt_year").value;
+            var checkbox = document.querySelector("input[name ='checkbox']:checked").value;
+
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+            var cell7 = row.insertCell(6);
+
+            cell1.innerHTML = ++i;
+            cell2.innerHTML = name;
+            cell3.innerHTML = phone;
+            cell4.innerHTML = email;
+            cell5.innerHTML = dress;
+            cell6.innerHTML = year;
+            cell7.innerHTML = checkbox;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row bg-success">
+            <div class="col-12">
+                header
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3 p-0">
+                <div class="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Highlight</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Hoạt động</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Danh sách trường</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Ưu đãi</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Đăng ký</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-9 mt-3 p-0">
+                <h3>DANH SÁCH ĐĂNG KÝ TƯ VẤN</h3>
+                <table class="table table-bordered" id="myTable">
+                    <tr>
+                        <th>STT</th>
+                        <th>Họ tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Năm</th>
+                        <th>Địa điểm tư vấn</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- modal  -->
+        <div class="row">
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>ĐĂNG KÝ THAM DỰ EDUUK MIỄN PHÍ</h4>
+                            <button type="button" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="form-group">
+                                    <input type="text" name="txt_name" onblur="checkName();" id="txt_name" class="form-control" placeholder="Họ tên">
+                                    <span class="text-danger" id="error_name">(*)</span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="txt_phone" onblur="checkPhone();" id="txt_phone" class="form-control" placeholder="Số điện thoại">
+                                    <span class="text-danger" id="error_phone">(*)</span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="txt_email" onblur="checkEmail();" id="txt_email" class="form-control" placeholder="Email">
+                                    <span class="text-danger" id="error_email">(*)</span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="txt_dress" onblur="checkDress();" id="txt_dress" class="form-control" placeholder="Địa chỉ">
+                                    <span class="text-danger" id="error_dress">(*)</span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="txt_year" onblur="checkYear();" id="txt_year" class="form-control" placeholder="Bạn dự định học năm nào?">
+                                    <span class="text-danger" id="error_year">(*)</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="h6">Bạn muốn tư vấn ở Hà Nội hay TPHCM?</label> <br>
+                                    <input type="radio" name="checkbox" id="checkbox" value="Hà Nội"> Hà Nội
+                                    <input type="radio" name="checkbox" id="checkbox" value="TPHCM"> TPHCM
+                                </div>
+                                <button type="button" onclick="outputTable()" class="btn btn-info">Đăng ký</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <h6>21119761-Nguyễn Tấn Thiên</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-success">
+            <div class="col-12">
+                <p class="m-0
+                ">21119761-Nguyễn Tấn Thiên</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery-3.6.4.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <script>
+        function checkdongia(){
+            var kyhan = document.querySelector("#kyhan");
+            var dongia = document.querySelector("#dongia");
+
+            kyhan.addEventListener("change" , function(){
+                dongia.value = kyhan.value;
+            });
+        }
+
+        function check_ttlienlac(){
+            var thongtin = document.getElementById("thongtin").value;
+            var check_error_thongtin = document.getElementById("error_thongtin");
+            var regex_thongtin = /^[A-Z]/;
+            if(thongtin=="" || thongtin==null){
+                check_error_thongtin.innerHTML = "Khong duoc bo trong!";
+                return false;
+            }else if(!regex_thongtin.test(thongtin)){
+                check_error_thongtin.innerHTML = "Khong hop le!";
+                return false;
+            }else{
+                check_error_thongtin.innerHTML = "";
+                return true;
+            }
+        }
+        function check_phone(){
+            var phone = document.getElementById("phone").value;
+            var check_error_phone = document.getElementById("error_phone");
+            var regex_phone = /^(09|08|07)[0-9]{8}$/;
+            if(phone=="" || phone==null){
+                check_error_phone.innerHTML = "Khong duoc bo trong!";
+                return false;
+            }else if(!regex_phone.test(phone)){
+                check_error_phone.innerHTML = "Khong hop le!";
+                return false;
+            }else{
+                check_error_phone.innerHTML = "";
+                return true;
+            }
+        }
+        function check_dress(){
+            var dress = document.getElementById("dress").value;
+            var check_error_dress = document.getElementById("error_dress");
+            var regex_dress = /^[A-Za-z0-9\s]+$/;
+            if(dress=="" || dress==null){
+                check_error_dress.innerHTML = "Khong duoc bo trong!";
+                return false;
+            }else if(!regex_dress.test(dress)){
+                check_error_dress.innerHTML = "Khong hop le!";
+                return false;
+            }else{
+                check_error_dress.innerHTML = "";
+                return true;
+            }
+        }
+
+        var i=0;
+        function insertTable(){
+            var check = document.querySelectorAll("input[type='checkbox']:checked");
+            var kyhan = document.getElementById("kyhan").value;
+            var thongtin = document.getElementById("thongtin").value;
+            var dress = document.getElementById("dress").value;
+            var thanhtoan = document.querySelector("input[name ='thanhtoan']:checked").value;
+            var dongia = document.getElementById("dongia").value;
+            var loaibao = [];
+            check.forEach(input => {
+                loaibao.push(input.value);
+            });
+
+            var table = document.getElementById("tbl");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+            var cell7 = row.insertCell(6);
+
+            cell1.innerHTML = ++i;
+            cell2.innerHTML = loaibao.join(" , ");
+            cell3.innerHTML = kyhan;
+            cell4.innerHTML = thongtin;
+            cell5.innerHTML = dress;
+            cell6.innerHTML = loaibao.length*dongia;
+            cell7.innerHTML = thanhtoan;
+
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row border">
+            <div class="col-12">
+                <h3>TUOI TRE ONLINE</h3>
+                <h3>DANG KY MUA BAO ONLINE</h3>
+            </div>
+        </div>
+        <div class="row border">
+            <div class="col-3">
+                Left
+            </div>
+            <div class="col-9 border">
+                <form action="">
+                    <div class="form-group">
+                        <label for="" class="h6">Dang ky bao</label> <br>
+                        <input type="checkbox" name="check" id="check" value="Tuoi tre hang ngay"> Tuoi tre hang ngay
+                        <input type="checkbox" name="check" id="check" value="Tuoi tre cuoi"> Tuoi tre cuoi
+                        <input type="checkbox" name="check" id="check" value="Tuoi tre chu nhat"> Tuoi tre chu nhat
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="h6">Ky han</label> <br>
+                        <select name="kyghan" id="kyhan" onclick="checkdongia()" class="form-control">
+                            <option value="300000">3 thang</option>
+                            <option value="500000">6 thang</option>
+                            <option value="800000">1 nam</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="h6">Don gia</label> <br>
+                        <input type="text" name="dongia" id="dongia" readonly class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="h6">Thong tin lien lac</label> <br>
+                        <input type="text" name="thongtin" id="thongtin" onblur="check_ttlienlac();" class="form-control">
+                        <span id="error_thongtin" class="text-danger">(*)</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="h6">So dien thoai</label> <br>
+                        <input type="text" name="phone" id="phone" onblur="check_phone();" class="form-control">
+                        <span id="error_phone" class="text-danger">(*)</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="h6">Dia chi nhan bao</label> <br>
+                        <input type="text" name="dress" id="dress" onblur="check_dress();" class="form-control">
+                        <span id="error_dress" class="text-danger">(*)</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="h6">Hinh thuc thanh toan</label> <br>
+                        <input type="radio" name="thanhtoan" id="thanhtoan" value="chuyen khoan"> chuyen khoan
+                        <input type="radio" name="thanhtoan" id="thanhtoan" value="tien mat"> tien mat
+                    </div>
+                    <button type="button" onclick="insertTable();" class="btn btn-info mb-3">Dat bao</button>
+                </form>
+                
+                <table id="tbl" class="table table-bordered">
+                    <tr>
+                        <th>STT</th>
+                        <th>Dat bao</th>
+                        <th>Ky han</th>
+                        <th>Thong tin lien lac</th>
+                        <th>Dia chi nhan bao</th>
+                        <th>Tong thanh tien</th>
+                        <th>Hinh thuc thanh toan</th>
+
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

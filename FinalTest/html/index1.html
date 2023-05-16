@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery-3.6.4.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <script>
+        function checkSerial(){
+            var serial = document.getElementById("text_serial").value;
+            var check_error_serial = document.getElementById("error_serial");
+            var regex_serial = /^[A-Z]$/;
+            if(!regex_serial.test(serial)){
+                check_error_serial.innerHTML = "Không hợp lệ!";
+            }else{
+                check_error_serial.innerHTML = "";
+                return serial;
+            }
+        }
+
+        function check_Mota(){
+            var mota = document.getElementById("txt_mota").value;
+            var check_error_mota = document.getElementById("error_mota");
+            if(mota == "" || mota == null){
+                check_error_mota.innerHTML = "Không được bỏ trống!";
+            }else{
+                check_error_mota.innerHTML = "";
+                return mota;
+            }
+        }
+        function check_Trongluong(){
+            var trongluong = document.getElementById("txt_trongluong").value;
+            var check_error_trongluong = document.getElementById("error_trongluong");
+            var regex_trongluong = /^[0-9]*\.?[0-9]+$/
+            if(trongluong == "" || trongluong == null){
+                check_error_trongluong.innerHTML = "Không được bỏ trống!";
+            }else if(!regex_trongluong.test(trongluong)){
+                check_error_trongluong.innerHTML = "Không hợp lệ!";
+            }
+            else{
+                check_error_trongluong.innerHTML = "";
+                return trongluong;
+            }
+        }
+
+
+        function Tienship(){
+            var kg = parseFloat(document.getElementById("txt_trongluong").value);
+            var tien = document.getElementById("txt_chiphi");
+            
+            
+            if(kg<20){
+                tien.value = kg*35000;
+            }
+            else if(kg<50){
+                tien.value = kg*30000;
+            }
+            else{
+                tien.value = kg*15000;
+            }
+
+            return tien.value;
+        }
+
+        var i =0;
+        function insertTable(){
+            var serial = document.getElementById("txt_serial").value;
+            var mota = document.getElementById("txt_mota").value;
+            var hinhanh = document.getElementById("txt_image").value;
+            var trongluong = document.getElementById("txt_trongluong").value;
+            var tienship = document.getElementById("txt_chiphi").value;
+
+            var table = document.getElementById("tbl");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+
+            cell1.innerHTML = ++i;
+            cell2.innerHTML = serial;
+            cell3.innerHTML = mota;
+            cell4.innerHTML = hinhanh;
+            cell5.innerHTML = trongluong;
+            cell6.innerHTML = tienship;
+
+
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row align-items-center bg-warning">
+            <div class="col-3">
+                <img src="../img/logo7.png" alt="Logo">
+            </div>
+            <div class="col-9">
+                <div class="navbar">
+                    <div class="nav">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Giới thiệu</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Dịch vụ</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="" class="nav-link">Dịch vụ 1</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="" class="nav-link">Dịch vụ 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-toggle="modal" data-target="#mymodal">Ký gửi hàng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Liên hệ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border">
+            <div class="col-9">
+                Form
+            </div>
+            <div class="col-3 border">
+                <h4>Qui đinh thanh toán</h4>
+                <ul>
+                    <li>Khách cọc từ 70%-100% số tiền của đơn hàng</li>
+                    <li> Hàng về sau 24-48 tiếng kể từ khi kho Trung Quốc ký nhận</li>
+                    <li>Shop sẽ thanh lý đơn hàng nếu sau 1 tuần khách hàng không thanh toán tiền nhận hàng</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row border">
+            <div class="col-12 text-primary mt-3">
+                <h4>Danh sách kiện hàng hóa gửi</h4>
+            </div>
+            <div class="col-12 mt-2">
+                <table id="tbl" class="table table-bordered">
+                    <tr>
+                        <th>STT</th>
+                        <th>Số serial</th>
+                        <th>Mô tả kiện hàng</th>
+                        <th>Hình ảnh</th>
+                        <th>Trọng lượng(kg)</th>
+                        <th>Phí vận chuyển (VND)</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row p-2 bg-warning">
+            <div class="col-12 text-center text-primary">
+                21119761-Nguyễn Tấn Thiên
+            </div>
+        </div>
+    </div>
+
+    <!-- modal  -->
+    <div class="modal fade" id="mymodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Thông tin kiện hàng hóa gửi</h4>
+                    <button type="button" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="">Số serial:</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="txt_serial" id="txt_serial" onblur="checkSerial();" class="form-control" placeholder="OZMO-600">
+                                    <label for="" id="error_serial" class="text-danger">Số serial in trên kiện hàng nếu có</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="">Mô tả kiện hàng:</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="txt_mota" id="txt_mota" onblur="check_Mota();" class="form-control" placeholder="Robot Hút Bui Lau Nhà Dreame D9 Pro">
+                                    <label for="" id="error_mota" class="text-danger">*</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="">Hình ảnh:</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="file" name="txt_image" id="txt_image" > <br>
+                                    <label for="" id="error_image" class="text-danger"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="">Trọng lượng (kg):</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="txt_trongluong" id="txt_trongluong" onblur="check_Trongluong();" onchange="Tienship()" class="form-control" placeholder="3.5">
+                                    <label for="" id="error_trongluong" class="text-danger">*</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="">Chi phí vận chuyển (VND):</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="txt_chiphi" id="txt_chiphi" class="form-control" readonly placeholder="192500">
+                                    <label for="" id="error_chiphi" class="text-danger"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="button" value="Xác nhận" onclick="insertTable()" class="text-primary border-primary bg-white">
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

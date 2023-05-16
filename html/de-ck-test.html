@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.4.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/de-ck-test.js"></script>
+    <title>Document</title>
+    <script>
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-3">
+                <img src="../img/logo.PNG" alt="">
+            </div>
+            <div class="col-9 text-right">
+                <h4 class="text-success mr-5">ĐOÀN THANH NIÊN THÀNH PHỐ HỒ CHÍ MINH</h4>
+                <h6 class="text-danger">ĐOÀN THANH NIÊN TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP THÀNH PHỐ HỒ CHÍ MINH</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="navbar bg-info">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="" class="nav-link text-white">TRANG CHỦ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link text-white">ĐOÀN THỂ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link text-white">SỰ KIỆN</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="" class="nav-link text-white dropdown-toggle" data-toggle="dropdown">HOẠT ĐỘNG</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link" data-toggle="modal" data-target="#myModal">ĐĂNG KÝ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">THAM GIA</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <img src="../img/ngayhoithanhnien.JPG" alt="ngayhoi" style="border-radius: 50%; width: 100%;">
+            </div>
+            <div class="col-6">
+                <h4 class="mt-3">TIN NỔI BẬT</h4>
+                <ul class="bg-info" style="list-style: lower-roman;">
+                    <li>Mùa hè xanh</li>
+                    <li>Thanh niên tình nguyện</li>
+                    <li>tấm lòng vàng</li>
+                    <li>Hiến máu nhân đạo</li>
+                    <li>Bảo vệ môi trường sạch</li>
+                    <li>Thi đua lập thành tích chào mừng 26/3</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <h4 class="text-center text-success">DANH SÁCH ĐĂNG KÝ HOẠT ĐỘNG MÙA HÈ XANH</h4>
+                <table id="myTable" class="table table-bordered">
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã SV</th>
+                        <th>Tên SV</th>
+                        <th>Ngày tham gia</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- modal  -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>THÔNG TIN ĐĂNG KÝ</h4>
+                        <button type="button" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="form-group">
+                                <label for="" class="h6">Mã sinh viên</label>
+                                <input type="text" name="txt_msv" id="txt_msv" onblur="checkMSV();" class="form-control" placeholder="Mã sinh viên">
+                                <span class="text-danger" id="error_msv">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="h6">Họ tên</label>
+                                <input type="text" name="txt_name" id="txt_name" onblur="checkName();" class="form-control" placeholder="Họ tên">
+                                <span class="text-danger" id="error_name">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="h6">Ngày tham gia</label>
+                                <input type="date" name="txt_date" id="txt_date" class="form-control" placeholder="mm/dd/yyyy">
+                                <span class="text-danger" id="error_date">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="h6">Email</label>
+                                <input type="email" name="txt_email" id="txt_email" onblur="checkEmail();" class="form-control" placeholder="Địa chỉ email">
+                                <span class="text-danger" id="error_email">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="h6">Số điện thoại</label>
+                                <input type="text" name="txt_phone" id="txt_phone" onblur="checkPhone();" class="form-control" placeholder="Số điện thoại">
+                                <span class="text-danger" id="error_phone">*</span>
+                            </div>
+                            <input type="button" class="btn btn-danger btn-block" onclick="insertTable()" value="Lưu">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-info">
+            <div class="col-12 mt-3">
+                <div class="text-right">
+                    <p class="m-0">&copy; 2022-2023 Đoàn thanh niên - Trường đại học Công Nghiệp TP.Hồ Chí Minh </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
